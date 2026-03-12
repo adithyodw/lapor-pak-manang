@@ -19,10 +19,10 @@
     "format": "npm run format --workspace api || echo \"no format script in web yet\""
   },
   "dependencies": {
+    "lightningcss": "^1.32.0",
     "next": "16.1.6"
   },
   "devDependencies": {
     "concurrently": "^9.1.0"
   }
 }
-
