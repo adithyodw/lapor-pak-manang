@@ -247,23 +247,81 @@ export default async function DashboardPage() {
                 </div>
               ))}
             </div>
-            <div className="h-64 rounded-lg border border-slate-200 bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 flex flex-col items-center justify-center gap-2 text-center px-6">
-              <svg
-                className="h-10 w-10 text-slate-400"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={1.5}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z"
-                />
+            {/* Indonesia Map Mockup Illustration */}
+            <div className="rounded-lg border border-slate-200 bg-gradient-to-br from-[#f0f4f8] via-[#e8eef5] to-[#dde6f0] p-4 sm:p-6 relative overflow-hidden">
+              <div className="absolute top-3 right-3 rounded-full bg-amber-50 border border-amber-200 px-2 py-0.5 text-[9px] font-semibold text-amber-700 z-10">
+                MOCKUP
+              </div>
+              <svg viewBox="0 0 800 350" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+                {/* Ocean background */}
+                <rect width="800" height="350" fill="none" />
+                {/* Grid lines */}
+                <line x1="0" y1="87" x2="800" y2="87" stroke="#cbd5e1" strokeWidth="0.5" strokeDasharray="4" opacity="0.4"/>
+                <line x1="0" y1="175" x2="800" y2="175" stroke="#cbd5e1" strokeWidth="0.5" strokeDasharray="4" opacity="0.4"/>
+                <line x1="0" y1="262" x2="800" y2="262" stroke="#cbd5e1" strokeWidth="0.5" strokeDasharray="4" opacity="0.4"/>
+                <line x1="200" y1="0" x2="200" y2="350" stroke="#cbd5e1" strokeWidth="0.5" strokeDasharray="4" opacity="0.4"/>
+                <line x1="400" y1="0" x2="400" y2="350" stroke="#cbd5e1" strokeWidth="0.5" strokeDasharray="4" opacity="0.4"/>
+                <line x1="600" y1="0" x2="600" y2="350" stroke="#cbd5e1" strokeWidth="0.5" strokeDasharray="4" opacity="0.4"/>
+
+                {/* Sumatra */}
+                <path d="M80,100 L120,80 L145,90 L160,120 L170,160 L165,200 L140,240 L110,260 L90,240 L75,200 L70,160 L72,130 Z" fill="#0a1f44" opacity="0.6" stroke="#0a1f44" strokeWidth="1"/>
+                {/* Heatspot Sumatra Utara */}
+                <circle cx="120" cy="110" r="16" fill="#c9a227" opacity="0.5"/>
+                <circle cx="120" cy="110" r="8" fill="#c9a227" opacity="0.8"/>
+
+                {/* Java */}
+                <path d="M175,225 L220,218 L280,215 L330,218 L370,225 L380,235 L370,242 L320,240 L270,238 L220,235 L185,238 L175,232 Z" fill="#0a1f44" opacity="0.85" stroke="#0a1f44" strokeWidth="1"/>
+                {/* DKI Jakarta hotspot */}
+                <circle cx="220" cy="222" r="20" fill="#c9a227" opacity="0.5"/>
+                <circle cx="220" cy="222" r="10" fill="#c9a227" opacity="0.8"/>
+                <text x="220" y="210" textAnchor="middle" fontSize="8" fill="#0a1f44" fontWeight="bold">Jakarta</text>
+                {/* Jawa Barat */}
+                <circle cx="260" cy="220" r="14" fill="#c9a227" opacity="0.45"/>
+                <circle cx="260" cy="220" r="7" fill="#c9a227" opacity="0.7"/>
+                {/* Jawa Timur */}
+                <circle cx="345" cy="224" r="12" fill="#c9a227" opacity="0.4"/>
+                <circle cx="345" cy="224" r="6" fill="#c9a227" opacity="0.65"/>
+
+                {/* Kalimantan */}
+                <path d="M270,90 L320,75 L370,80 L395,100 L400,140 L390,175 L360,195 L320,200 L290,190 L265,165 L255,130 L260,105 Z" fill="#0a1f44" opacity="0.45" stroke="#0a1f44" strokeWidth="1"/>
+                {/* Kalimantan Timur */}
+                <circle cx="370" cy="120" r="10" fill="#c9a227" opacity="0.35"/>
+                <circle cx="370" cy="120" r="5" fill="#c9a227" opacity="0.6"/>
+
+                {/* Sulawesi */}
+                <path d="M430,95 L450,80 L465,85 L460,110 L475,130 L490,120 L500,140 L485,160 L470,180 L455,170 L445,145 L435,160 L420,145 L425,120 Z" fill="#0a1f44" opacity="0.55" stroke="#0a1f44" strokeWidth="1"/>
+                {/* Sulawesi Selatan */}
+                <circle cx="450" cy="158" r="11" fill="#c9a227" opacity="0.4"/>
+                <circle cx="450" cy="158" r="5.5" fill="#c9a227" opacity="0.7"/>
+
+                {/* Bali */}
+                <ellipse cx="392" cy="240" rx="10" ry="7" fill="#0a1f44" opacity="0.5" stroke="#0a1f44" strokeWidth="0.5"/>
+                <circle cx="392" cy="240" r="5" fill="#c9a227" opacity="0.3"/>
+
+                {/* NTB & NTT */}
+                <ellipse cx="418" cy="245" rx="12" ry="5" fill="#0a1f44" opacity="0.35" stroke="#0a1f44" strokeWidth="0.5"/>
+                <ellipse cx="448" cy="248" rx="14" ry="5" fill="#0a1f44" opacity="0.3" stroke="#0a1f44" strokeWidth="0.5"/>
+                <ellipse cx="480" cy="250" rx="10" ry="4" fill="#0a1f44" opacity="0.25" stroke="#0a1f44" strokeWidth="0.5"/>
+
+                {/* Maluku */}
+                <ellipse cx="540" cy="150" rx="15" ry="10" fill="#0a1f44" opacity="0.3" stroke="#0a1f44" strokeWidth="0.5"/>
+                <ellipse cx="560" cy="175" rx="10" ry="6" fill="#0a1f44" opacity="0.25" stroke="#0a1f44" strokeWidth="0.5"/>
+
+                {/* Papua */}
+                <path d="M600,100 L650,85 L710,90 L740,110 L745,145 L730,175 L700,190 L660,185 L630,170 L610,145 L600,120 Z" fill="#0a1f44" opacity="0.3" stroke="#0a1f44" strokeWidth="1"/>
+
+                {/* Legend */}
+                <rect x="20" y="295" width="200" height="45" rx="6" fill="white" opacity="0.85" stroke="#e2e8f0" strokeWidth="1"/>
+                <text x="32" y="312" fontSize="8" fill="#64748b" fontWeight="bold">INTENSITAS LAPORAN</text>
+                <circle cx="38" cy="327" r="5" fill="#c9a227" opacity="0.3"/>
+                <text x="48" y="330" fontSize="7" fill="#64748b">Rendah</text>
+                <circle cx="88" cy="327" r="5" fill="#c9a227" opacity="0.55"/>
+                <text x="98" y="330" fontSize="7" fill="#64748b">Sedang</text>
+                <circle cx="148" cy="327" r="5" fill="#c9a227" opacity="0.85"/>
+                <text x="158" y="330" fontSize="7" fill="#64748b">Tinggi</text>
               </svg>
-              <p className="text-xs text-slate-500">
-                Peta interaktif Indonesia (Mapbox) akan menampilkan heatmap
-                intensitas laporan per provinsi/kota di sini.
+              <p className="text-center text-[10px] text-slate-400 mt-2">
+                Ilustrasi peta sebaran kasus per provinsi — akan digantikan peta interaktif Mapbox pada versi produksi
               </p>
             </div>
           </div>

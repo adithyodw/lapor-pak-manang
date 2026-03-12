@@ -261,6 +261,32 @@ export function GovLayout({ children }: GovLayoutProps) {
           </div>
         </div>
       </footer>
+
+      {/* Disclaimer Banner */}
+      <div className="bg-amber-50 border-t-2 border-amber-300">
+        <div className="gov-container py-3 sm:py-4">
+          <div className="flex items-start sm:items-center gap-3">
+            <div className="flex-shrink-0 mt-0.5 sm:mt-0">
+              <svg className="h-5 w-5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01M12 3a9 9 0 110 18 9 9 0 010-18z" />
+              </svg>
+            </div>
+            <div className="text-[11px] sm:text-xs leading-relaxed text-amber-800">
+              <p className="font-semibold">DISCLAIMER / PEMBERITAHUAN</p>
+              <p className="mt-0.5">
+                Website ini merupakan <strong>mockup / sample / prototype</strong> yang dibuat untuk keperluan demonstrasi dan pengujian saja.
+                Seluruh data, statistik, grafik, dan informasi yang ditampilkan bersifat <strong>fiktif dan tidak merepresentasikan data nyata</strong>.
+                Website ini tidak berafiliasi resmi dengan institusi kepolisian manapun.
+              </p>
+              <p className="mt-0.5 text-amber-700">
+                This website is a <strong>mockup / sample / prototype</strong> for demonstration and testing purposes only.
+                All data, statistics, charts, and information displayed are <strong>fictional and do not represent real data</strong>.
+                This website is not officially affiliated with any law enforcement institution.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
