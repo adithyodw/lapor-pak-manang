@@ -187,12 +187,12 @@ export default function LaporPage() {
 
   return (
     <div className="gov-section">
-      <div className="gov-container grid gap-10 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] items-start">
-        <section className="space-y-6">
+      <div className="gov-container grid gap-8 lg:gap-10 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] items-start">
+        <section className="space-y-6 order-2 lg:order-1">
           <header className="space-y-2">
             <h1 className="gov-heading-xl">
               Lapor Pak Manang
-              <span className="mt-2 block text-base font-normal text-slate-600">
+              <span className="mt-2 block text-sm sm:text-base font-normal text-slate-600">
                 Report Securely to Commissioner Manang
               </span>
             </h1>
@@ -397,7 +397,7 @@ export default function LaporPage() {
           </form>
         </section>
 
-        <aside className="gov-card px-6 py-6 space-y-4 bg-slate-50">
+        <aside className="gov-card px-5 py-5 sm:px-6 sm:py-6 space-y-4 bg-slate-50 order-1 lg:order-2">
           <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-700">
             Panduan Singkat / Quick Guidance
           </h2>

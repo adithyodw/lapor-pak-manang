@@ -44,19 +44,19 @@ export default async function DashboardPage() {
           </p>
         </header>
 
-        <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <section className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
           {cards.map((card) => (
             <div
               key={card.labelId}
-              className="gov-card px-5 py-4 flex flex-col gap-2"
+              className="gov-card px-4 py-3 sm:px-5 sm:py-4 flex flex-col gap-1.5"
             >
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
+              <p className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
                 {card.labelId}
-                <span className="block text-[10px] font-normal text-slate-400">
+                <span className="block text-[9px] sm:text-[10px] font-normal text-slate-400">
                   {card.labelEn}
                 </span>
               </p>
-              <p className="text-2xl font-semibold text-[color:var(--color-navy)]">
+              <p className="text-xl sm:text-2xl font-semibold text-[color:var(--color-navy)]">
                 {card.value.toLocaleString("id-ID")}
               </p>
             </div>
@@ -78,7 +78,7 @@ export default async function DashboardPage() {
               SAMPLE DATA ONLY
             </span>
           </div>
-          <div className="flex items-end gap-2 h-44 rounded-lg border border-slate-200 bg-gradient-to-t from-slate-50 to-white px-4 pb-3 pt-4">
+          <div className="flex items-end gap-2 h-44 rounded-lg border border-slate-200 bg-gradient-to-t from-slate-50 to-white px-3 sm:px-4 pb-3 pt-4 overflow-x-auto">
             {[
               { month: "Jan", v: 58 },
               { month: "Feb", v: 74 },
@@ -95,7 +95,7 @@ export default async function DashboardPage() {
             ].map((item) => (
               <div
                 key={item.month}
-                className="flex-1 flex flex-col items-center gap-1"
+                className="flex-1 min-w-[28px] flex flex-col items-center gap-1"
               >
                 <span className="text-[9px] font-semibold text-[color:var(--color-navy)]">
                   {item.v}
@@ -216,7 +216,7 @@ export default async function DashboardPage() {
             provinsi. Pada implementasi akhir, area ini akan digantikan oleh
             peta interaktif (Mapbox) dengan heatmap.
           </p>
-          <div className="grid gap-6 lg:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2">
             <div className="space-y-3">
               {[
                 { region: "DKI Jakarta", value: 320 },

@@ -129,7 +129,7 @@ export default function ContactPage() {
 
   return (
     <div className="gov-section">
-      <div className="gov-container grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] items-start">
+      <div className="gov-container grid gap-8 lg:gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] items-start">
         <section className="space-y-4">
           <h1 className="gov-heading-xl">
             Kontak Resmi

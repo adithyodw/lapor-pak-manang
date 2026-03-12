@@ -1,10 +1,21 @@
+"use client";
+
 import Link from "next/link";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 
 interface GovLayoutProps {
   children: ReactNode;
 }
+
+const NAV_LINKS = [
+  { href: "/", label: "Beranda" },
+  { href: "/about", label: "Tentang Manang" },
+  { href: "/lapor", label: "Lapor" },
+  { href: "/dashboard", label: "Dashboard Kasus" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/contact", label: "Kontak" },
+];
 
 const SOCIAL_LINKS = [
   {
@@ -46,53 +57,116 @@ const SOCIAL_LINKS = [
 ];
 
 export function GovLayout({ children }: GovLayoutProps) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen flex flex-col">
+      {/* Header */}
       <header className="border-b border-slate-200 bg-white/95 backdrop-blur sticky top-0 z-40">
-        <div className="gov-container flex items-center justify-between py-4 gap-4">
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="h-10 w-10 rounded-full bg-[color:var(--color-navy)] flex items-center justify-center text-[color:var(--color-gold)] font-semibold text-lg group-hover:scale-105 transition-transform">
+        <div className="gov-container flex items-center justify-between py-3 gap-3">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2.5 shrink-0">
+            <div className="h-9 w-9 rounded-full bg-[color:var(--color-navy)] flex items-center justify-center text-[color:var(--color-gold)] font-semibold text-base">
               M
             </div>
             <div className="flex flex-col">
-              <span className="text-xs uppercase tracking-[0.14em] text-slate-500">
+              <span className="text-[10px] uppercase tracking-[0.14em] text-slate-500 leading-tight">
                 LAPOR PAK MANANG
               </span>
-              <span className="text-sm font-semibold text-slate-900">
+              <span className="text-xs font-semibold text-slate-900 leading-tight">
                 Suara Rakyat untuk Keadilan
               </span>
             </div>
           </Link>
-          <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-700">
-            <Link href="/" className="hover:text-[color:var(--color-navy)] transition-colors">
-              Beranda
-            </Link>
-            <Link href="/about" className="hover:text-[color:var(--color-navy)] transition-colors">
-              Tentang Manang
-            </Link>
-            <Link href="/lapor" className="hover:text-[color:var(--color-navy)] transition-colors">
-              Lapor
-            </Link>
-            <Link href="/dashboard" className="hover:text-[color:var(--color-navy)] transition-colors">
-              Dashboard Kasus
-            </Link>
-            <Link href="/faq" className="hover:text-[color:var(--color-navy)] transition-colors">
-              FAQ
-            </Link>
-            <Link href="/contact" className="hover:text-[color:var(--color-navy)] transition-colors">
-              Kontak
-            </Link>
+
+          {/* Desktop Nav */}
+          <nav className="hidden lg:flex items-center gap-5 text-sm font-medium text-slate-700">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="hover:text-[color:var(--color-navy)] transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
           </nav>
-          <div className="flex items-center gap-3">
+
+          {/* Right side */}
+          <div className="flex items-center gap-2">
             <LanguageSwitcher />
             <Link
               href="/lapor"
-              className="hidden sm:inline-flex items-center rounded-full border border-[color:var(--color-navy)] bg-[color:var(--color-navy)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-white shadow-sm hover:bg-[#132b59] transition-colors"
+              className="hidden sm:inline-flex items-center rounded-full bg-[color:var(--color-navy)] px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-white shadow-sm hover:bg-[#132b59] transition-colors"
             >
               Laporkan Sekarang
             </Link>
+
+            {/* Mobile Hamburger */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="lg:hidden flex items-center justify-center h-9 w-9 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors"
+              aria-label="Menu"
+            >
+              {mobileMenuOpen ? (
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
+            </button>
           </div>
         </div>
+
+        {/* Mobile Menu Dropdown */}
+        {mobileMenuOpen && (
+          <div className="lg:hidden border-t border-slate-200 bg-white">
+            <nav className="gov-container py-4 flex flex-col gap-1">
+              {NAV_LINKS.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-[color:var(--color-navy)] transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <div className="mt-2 pt-3 border-t border-slate-100">
+                <Link
+                  href="/lapor"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-center rounded-full bg-[color:var(--color-navy)] px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.12em] text-white shadow-sm hover:bg-[#132b59] transition-colors"
+                >
+                  Laporkan Sekarang
+                </Link>
+              </div>
+              <div className="mt-3 pt-3 border-t border-slate-100 flex items-center gap-3">
+                <a
+                  href="https://wa.me/6590616870"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-xs text-slate-600 hover:text-[#25D366] transition-colors"
+                >
+                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                  </svg>
+                  +65 9061 6870
+                </a>
+                <span className="text-slate-300">|</span>
+                <a
+                  href="mailto:adithyodw@gmail.com"
+                  className="text-xs text-slate-600 hover:text-[color:var(--color-navy)] transition-colors"
+                >
+                  adithyodw@gmail.com
+                </a>
+              </div>
+            </nav>
+          </div>
+        )}
       </header>
 
       <main className="flex-1">{children}</main>
@@ -103,22 +177,18 @@ export function GovLayout({ children }: GovLayoutProps) {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Hubungi via WhatsApp"
-        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-emerald-500/30 hover:bg-[#1da851] hover:scale-110 transition-all duration-200 group"
+        className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-emerald-500/30 hover:bg-[#1da851] hover:scale-110 active:scale-95 transition-all duration-200"
       >
         <svg className="h-7 w-7" viewBox="0 0 24 24" fill="currentColor">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
           <path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.75.75 0 00.917.918l4.462-1.496A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.34 0-4.508-.664-6.36-1.813l-.444-.269-2.645.887.886-2.648-.277-.452A9.955 9.955 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
         </svg>
-        <span className="absolute right-full mr-3 whitespace-nowrap rounded-lg bg-slate-900 px-3 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-          Chat WhatsApp
-        </span>
       </a>
 
       {/* Footer */}
       <footer className="border-t border-slate-200 bg-[color:var(--color-navy)] text-white">
         <div className="gov-container py-10">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {/* Brand */}
             <div className="space-y-3">
               <div className="flex items-center gap-3">
                 <div className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center text-[color:var(--color-gold)] font-semibold text-lg">
@@ -137,95 +207,56 @@ export function GovLayout({ children }: GovLayoutProps) {
               </p>
             </div>
 
-            {/* Quick Links */}
             <div className="space-y-3">
               <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[color:var(--color-gold)]">
                 Tautan Cepat
               </p>
               <nav className="flex flex-col gap-2 text-sm text-slate-300">
-                <Link href="/lapor" className="hover:text-white transition-colors">
-                  Lapor Sekarang
-                </Link>
-                <Link href="/dashboard" className="hover:text-white transition-colors">
-                  Dashboard Kasus
-                </Link>
-                <Link href="/about" className="hover:text-white transition-colors">
-                  Tentang Manang Soebeti
-                </Link>
-                <Link href="/faq" className="hover:text-white transition-colors">
-                  FAQ
-                </Link>
+                <Link href="/lapor" className="hover:text-white transition-colors">Lapor Sekarang</Link>
+                <Link href="/dashboard" className="hover:text-white transition-colors">Dashboard Kasus</Link>
+                <Link href="/about" className="hover:text-white transition-colors">Tentang Manang Soebeti</Link>
+                <Link href="/faq" className="hover:text-white transition-colors">FAQ</Link>
               </nav>
             </div>
 
-            {/* Contact */}
             <div className="space-y-3">
               <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[color:var(--color-gold)]">
                 Hubungi Langsung
               </p>
               <div className="flex flex-col gap-2 text-sm text-slate-300">
-                <a
-                  href="https://wa.me/6590616870"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 hover:text-[#25D366] transition-colors"
-                >
-                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-                  </svg>
+                <a href="https://wa.me/6590616870" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-[#25D366] transition-colors">
+                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" /></svg>
                   +65 9061 6870
                 </a>
-                <a
-                  href="mailto:adithyodw@gmail.com"
-                  className="flex items-center gap-2 hover:text-white transition-colors"
-                >
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
+                <a href="mailto:adithyodw@gmail.com" className="flex items-center gap-2 hover:text-white transition-colors">
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                   adithyodw@gmail.com
                 </a>
               </div>
             </div>
 
-            {/* Social Media */}
             <div className="space-y-3">
               <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[color:var(--color-gold)]">
                 Media Sosial
               </p>
               <div className="flex gap-3">
                 {SOCIAL_LINKS.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={link.label}
-                    className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-slate-300 hover:bg-white/20 hover:text-white transition-all"
-                  >
+                  <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer" aria-label={link.label} className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-slate-300 hover:bg-white/20 hover:text-white transition-all">
                     {link.icon}
                   </a>
                 ))}
               </div>
               <p className="text-[11px] text-slate-400">
-                Ikuti media sosial resmi Kombes Manang Soebeti untuk informasi
-                terbaru.
+                Ikuti media sosial resmi Kombes Manang Soebeti untuk informasi terbaru.
               </p>
             </div>
           </div>
 
-          {/* Bottom Bar */}
           <div className="mt-8 flex flex-col gap-3 border-t border-white/10 pt-6 text-[11px] text-slate-400 sm:flex-row sm:items-center sm:justify-between">
-            <p>
-              © {new Date().getFullYear()} LAPOR PAK MANANG. Semua hak
-              dilindungi undang-undang.
-            </p>
+            <p>© {new Date().getFullYear()} LAPOR PAK MANANG. Semua hak dilindungi undang-undang.</p>
             <div className="flex flex-wrap gap-4">
-              <Link href="/privacy" className="hover:text-white transition-colors">
-                Kebijakan Privasi
-              </Link>
-              <Link href="/transparency" className="hover:text-white transition-colors">
-                Transparansi & Akuntabilitas
-              </Link>
+              <Link href="/privacy" className="hover:text-white transition-colors">Kebijakan Privasi</Link>
+              <Link href="/transparency" className="hover:text-white transition-colors">Transparansi & Akuntabilitas</Link>
             </div>
           </div>
         </div>
