@@ -12,7 +12,8 @@
     "dev:web": "npm run dev --workspace web",
     "dev:api": "npm run start:dev --workspace api",
     "dev": "concurrently \"npm run dev:web\" \"npm run dev:api\"",
-    "build": "npm run build --workspace web && npm run build --workspace api",
+    "build": "npm run build --workspace web",
+    "build:all": "npm run build --workspace web && npm run build --workspace api",
     "lint": "npm run lint --workspace web && npm run lint --workspace api",
     "test": "npm test --workspace api",
     "format": "npm run format --workspace api || echo \"no format script in web yet\""
