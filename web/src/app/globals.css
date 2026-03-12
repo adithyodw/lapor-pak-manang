@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f5f6f8;
+  --foreground: #0a1f44;
+
+  --color-navy: #0a1f44;
+  --color-gold: #c9a227;
+  --color-white: #ffffff;
+  --color-gray-bg: #f5f6f8;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter-sans);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.gov-container {
+  @apply mx-auto max-w-6xl px-4 sm:px-6 lg:px-8;
+}
+
+.gov-section {
+  @apply py-12 sm:py-16 lg:py-20;
+}
+
+.gov-card {
+  @apply rounded-xl bg-white shadow-sm ring-1 ring-slate-200;
+}
+
+.gov-heading-xl {
+  @apply text-3xl sm:text-4xl font-semibold tracking-tight text-slate-900;
+}
+
+.gov-body {
+  @apply text-base leading-relaxed text-slate-700;
+}
