@@ -18,6 +18,9 @@
     "test": "npm test --workspace api",
     "format": "npm run format --workspace api || echo \"no format script in web yet\""
   },
+  "dependencies": {
+    "next": "16.1.6"
+  },
   "devDependencies": {
     "concurrently": "^9.1.0"
   }
